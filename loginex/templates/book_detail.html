@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+{% load static%}
+<html lang="en">
+<head>
+	<title>Book Detail</title>
+</head>
+
+  {% if user.is_authenticated %}
+        <p>Welcome {{ user.username }} !!!</p>       
+    {% endif %}
+<body>
+	{% for bb in book%}
+		{{bb.book_id}}
+		{{bb.book_name}}
+		{{bb.date}}
+	{% if user.username == "admin" %}
+		{{bb.Author_name}}
+	<br>
+	{% endif %}
+	{% endfor %}
+
+	<br>{{user.id}}<br>
+
+	<a href='/add_book/' >Add Book</a>
+<form class="login100-form validate-form" name="LoginoutForm"  method="post">
+	   {% csrf_token %}
+	<div class="container-login100-form-btn">
+						<div class="wrap-login100-form-btn">
+							<div class="login100-form-bgbtn"></div>
+							<button class="login100-form-btn">
+								<a href="logout/">
+								Logout
+							</a>
+							</button>
+						</div>
+					</div>
+</form>
+</body>
